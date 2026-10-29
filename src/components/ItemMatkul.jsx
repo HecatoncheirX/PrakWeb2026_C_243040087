@@ -32,7 +32,6 @@ function ItemMatkul({ kode, nama, sks, semester }) {
           Semester {semester}
         </p>
       </div>
-      <div className="matkul-sks-badge">{sks} SKS</div>
     </div>
   );
 }

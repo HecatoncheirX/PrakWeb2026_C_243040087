@@ -105,9 +105,9 @@ export default function App() {
           )}
 
           <div className="hero-badges-row">
-            <span className="hero-tag blue">{profile?.prodi}</span>
-            <span className="hero-tag outline">{profile?.universitas}</span>
-            <span className="hero-tag outline">Angkatan {profile?.angkatan}</span>
+            <span className="hero-tag">{profile?.prodi}</span>
+            <span className="hero-tag">{profile?.universitas}</span>
+            <span className="hero-tag">Angkatan {profile?.angkatan}</span>
           </div>
 
           <p className="hero-bio">{profile?.bio}</p>
@@ -128,13 +128,13 @@ export default function App() {
 
           {/* CTA */}
           <div className="hero-cta">
-            <a href={profile?.github} target="_blank" rel="noopener noreferrer" className="btn-primary">
+            <a href={profile?.github} target="_blank" rel="noopener noreferrer" className="btn-hero">
               <IconGitHub /> GitHub Profile
             </a>
-            <a href={profile?.instagram} target="_blank" rel="noopener noreferrer" className="btn-outline">
+            <a href={profile?.instagram} target="_blank" rel="noopener noreferrer" className="btn-hero">
               <IconIG /> Instagram
             </a>
-            <a href={`mailto:${profile?.email}`} className="btn-outline">
+            <a href={`mailto:${profile?.email}`} className="btn-hero">
               <IconMail /> Gmail
             </a>
           </div>
