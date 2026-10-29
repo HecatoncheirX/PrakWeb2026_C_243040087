@@ -7,23 +7,23 @@ import React from "react";
 
 const levelConfig = {
   Pemula: {
-    color:  "#059669",
-    bg:     "#ecfdf5",
-    border: "#a7f3d0",
+    color:  "#10b981",
+    bg:     "rgba(16,185,129,0.1)",
+    border: "rgba(16,185,129,0.25)",
     dot:    "#10b981",
     bar:    33,
   },
   Menengah: {
-    color:  "#d97706",
-    bg:     "#fffbeb",
-    border: "#fcd34d",
+    color:  "#f59e0b",
+    bg:     "rgba(245,158,11,0.1)",
+    border: "rgba(245,158,11,0.25)",
     dot:    "#f59e0b",
     bar:    66,
   },
   Mahir: {
-    color:  "#2563eb",
-    bg:     "#eff6ff",
-    border: "#bfdbfe",
+    color:  "#60a5fa",
+    bg:     "rgba(59,130,246,0.12)",
+    border: "rgba(59,130,246,0.3)",
     dot:    "#3b82f6",
     bar:    100,
   },
