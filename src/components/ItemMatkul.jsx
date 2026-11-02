@@ -5,15 +5,15 @@
 import React from "react";
 
 const iconMap = {
-  "Sistem Informasi Sosial":              "🌐",
-  "Internet of Things":                   "📡",
-  "Intelegensi Buatan":                   "🤖",
-  "Verifikasi Validasi Perangkat Lunak":  "✅",
-  "Perancangan Sistem":                   "📐",
-  "Praktikum Web":                        "💻",
-  "Praktikum Sistem Berorientasi Objek":  "🔧",
-  "Praktikum Pemogram II":                "⌨️",
-  "Technopreneurship":                    "💡",
+  "Sistem Informasi Sosial": "🌐",
+  "Internet of Things": "📡",
+  "Intelegensi Buatan": "🤖",
+  "Verifikasi Validasi Perangkat Lunak": "✅",
+  "Perancangan Sistem": "📐",
+  "Praktikum Web": "💻",
+  "Praktikum Sistem Berorientasi Objek": "🔧",
+  "Praktikum Pemogram II": "⌨️",
+  "Technopreneurship": "💡",
 };
 
 function ItemMatkul({ kode, nama, sks, semester }) {

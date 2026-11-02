@@ -1,6 +1,11 @@
-const express = require("express");
-const cors    = require("cors");
-const path    = require("path");
+import express from "express";
+import cors    from "cors";
+import path    from "path";
+import { fileURLToPath } from "url";
+
+// ESM tidak punya __dirname → buat manual
+const __filename = fileURLToPath(import.meta.url);
+const __dirname  = path.dirname(__filename);
 
 const app  = express();
 const PORT = 3001;
@@ -10,15 +15,15 @@ app.use(express.json());
 
 // ── PROFIL BIOGRAFI ──────────────────────────────────────────────────
 const profile = {
-  nama:         "Muhammad Farrel Triputra Alfarizqi",
-  nim:          "243040087",
-  prodi:        "Teknik Informatika",
-  universitas:  "Universitas Pasundan",
-  angkatan:     "2024",
-  bio:          "Mahasiswa Teknik Informatika Universitas Pasundan yang antusias di bidang Web Development dan Software Engineering. Selalu bersemangat mempelajari teknologi baru dan membangun solusi digital yang bermakna.",
-  email:        "muhammadfarrel2020@gmail.com",
-  github:       "https://github.com/HecatoncheirX",
-  instagram:    "https://www.instagram.com/vertexbeta?rpxt=MW53Njc0emo1aGlr",
+  nama:        "Muhammad Farrel Triputra Alfarizqi",
+  nim:         "243040087",
+  prodi:       "Teknik Informatika",
+  universitas: "Universitas Pasundan",
+  angkatan:    "2024",
+  bio:         "Mahasiswa Teknik Informatika Universitas Pasundan yang antusias di bidang Web Development dan Software Engineering. Selalu bersemangat mempelajari teknologi baru dan membangun solusi digital yang bermakna.",
+  email:       "muhammadfarrel2020@gmail.com",
+  github:      "https://github.com/HecatoncheirX",
+  instagram:   "https://www.instagram.com/vertexbeta?rpxt=MW53Njc0emo1aGlr",
 };
 
 // ── SKILL (BadgeSkill) ───────────────────────────────────────────────
@@ -31,17 +36,17 @@ const skills = [
   { namaSkill: "Git",        level: "Menengah" },
 ];
 
-// ── MATA KULIAH (ItemMatkul) — Semester 4, tanpa nilai ───────────────
+// ── MATA KULIAH (ItemMatkul) — Semester 4 ───────────────────────────
 const mataKuliah = [
-  { id: 1, kode: "IF2401", nama: "Sistem Informasi Sosial",                 sks: 3, semester: 4 },
-  { id: 2, kode: "IF2402", nama: "Internet of Things",                      sks: 2, semester: 4 },
-  { id: 3, kode: "IF2403", nama: "Intelegensi Buatan",                      sks: 3, semester: 4 },
-  { id: 4, kode: "IF2404", nama: "Verifikasi Validasi Perangkat Lunak",     sks: 2, semester: 4 },
-  { id: 5, kode: "IF2405", nama: "Perancangan Sistem",                      sks: 3, semester: 4 },
-  { id: 6, kode: "IF2406", nama: "Praktikum Web",                           sks: 2, semester: 4 },
-  { id: 7, kode: "IF2407", nama: "Praktikum Sistem Berorientasi Objek",     sks: 1, semester: 4 },
-  { id: 8, kode: "IF2408", nama: "Praktikum Pemogram II",                   sks: 2, semester: 4 },
-  { id: 9, kode: "IF2409", nama: "Technopreneurship",                       sks: 2, semester: 4 },
+  { id: 1, kode: "IF2401", nama: "Sistem Informasi Sosial",                sks: 3, semester: 4 },
+  { id: 2, kode: "IF2402", nama: "Internet of Things",                     sks: 2, semester: 4 },
+  { id: 3, kode: "IF2403", nama: "Intelegensi Buatan",                     sks: 3, semester: 4 },
+  { id: 4, kode: "IF2404", nama: "Verifikasi Validasi Perangkat Lunak",    sks: 2, semester: 4 },
+  { id: 5, kode: "IF2405", nama: "Perancangan Sistem",                     sks: 3, semester: 4 },
+  { id: 6, kode: "IF2406", nama: "Praktikum Web",                          sks: 2, semester: 4 },
+  { id: 7, kode: "IF2407", nama: "Praktikum Sistem Berorientasi Objek",    sks: 1, semester: 4 },
+  { id: 8, kode: "IF2408", nama: "Praktikum Pemogram II",                  sks: 2, semester: 4 },
+  { id: 9, kode: "IF2409", nama: "Technopreneurship",                      sks: 2, semester: 4 },
 ];
 
 // ── PROYEK (Repositories GitHub asli) ───────────────────────────────
@@ -94,10 +99,15 @@ const projects = [
 ];
 
 // ── ENDPOINTS ────────────────────────────────────────────────────────
-app.get("/api/profile",  (req, res) => res.json({ success: true, data: profile   }));
-app.get("/api/skills",   (req, res) => res.json({ success: true, data: skills    }));
+app.get("/api/profile",  (req, res) => res.json({ success: true, data: profile    }));
+app.get("/api/skills",   (req, res) => res.json({ success: true, data: skills     }));
 app.get("/api/matkul",   (req, res) => res.json({ success: true, data: mataKuliah }));
 app.get("/api/projects", (req, res) => res.json({ success: true, count: projects.length, data: projects }));
+app.get("/api/projects/:id", (req, res) => {
+  const project = projects.find(p => p.id === parseInt(req.params.id));
+  if (!project) return res.status(404).json({ success: false, message: "Proyek tidak ditemukan" });
+  res.json({ success: true, data: project });
+});
 
 // ── STATIC (production) ──────────────────────────────────────────────
 app.use(express.static(path.join(__dirname, "dist")));
